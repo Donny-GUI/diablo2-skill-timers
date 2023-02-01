@@ -1,0 +1,17 @@
+import PySimpleGUI as sg
+
+class Background:
+    
+    def __init__(self) -> None:
+        self.background_layout = [[sg.Image()]]
+        self.backdrop = sg.Window(
+                'Background', 
+                self.background_layout, 
+                no_titlebar=True, 
+                finalize=True, 
+                margins=(0, 0), 
+                alpha_channel=.3, 
+                element_padding=(0,0), 
+                right_click_menu=[[''], ['Exit',]])
+    
+        
