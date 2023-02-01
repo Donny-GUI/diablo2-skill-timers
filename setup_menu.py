@@ -8,13 +8,21 @@ from settings import BINDS
 
 
 
-
+# dataclass for elements to use for default values and combo values
 class Values:
     names: list       = SkillTimer.names
     durations: list   = list(range(0,500))
     binds: list       = BINDS
 
+
 class FrameData:
+    
+    """ 
+    Data related to each from on the main menu, 
+    the frame is represented by one skill, 
+    one duration, one bind element 
+    """
+    
     def __init__(self, slot) -> None:
         self.slot       = slot
         self.name       = None
@@ -34,10 +42,10 @@ class FrameData:
         return data
 
 
- 
-
-
 class DiabloMainMenu:
+    
+    """  Main menu class """
+    
     def __init__(self) -> None:
         self.num_columns = 5
         self.num_rows = 5
@@ -95,6 +103,8 @@ class DiabloMainMenu:
 
 
 class SkillOptionFrame(DiabloMainMenu):
+    
+    """ Frame for each skill setting up, by default it uses all the possible ones """
     
     def __init__(self, root, slot_number) -> None:
         
@@ -158,6 +168,8 @@ class SkillOptionFrame(DiabloMainMenu):
 
 class MainMenu(DiabloMainMenu):
     
+    """  Main Menu for setup and profiles """
+    
     def __init__(self, root) -> None:
         self.root = root
         self.slots = {}
@@ -180,6 +192,8 @@ class MainMenu(DiabloMainMenu):
                 slot = self.slots[name] = SkillOptionFrame(self.right_slots, name)
     
     def collect(self):
+        """ collect and return the data from the gui pieces """
+        
         self.data = {}
         for name in self.slot_names:
             slot: SkillOptionFrame = self.slots[name]
@@ -192,6 +206,9 @@ class MainMenu(DiabloMainMenu):
 
 
 class BottomFrame(DiabloMainMenu):
+    
+    """ Save, Load, Exit Buttons on the Bottom of the GUI """
+    
     def __init__(self, root, object: DiabloMainMenu) -> None:
         self.frame = Frame(root, relief='sunken', border =5, height=100)
         self._save =  Button(self.frame, text="Save", width=30,command=object.save)

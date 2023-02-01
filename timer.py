@@ -2,6 +2,11 @@ import threading
 import time
 
 class Timer:
+    """ 
+    Threaded Timer. Used by the skill slot class
+    to keep track of the time that has passed 
+    since this skill has been reset 
+    """
     def __init__(self, duration_seconds: int):
         self.started = False
         self.ended = True
@@ -13,11 +18,15 @@ class Timer:
         self.running = False
     
     def start(self):
+        """ starts the timer  """
+        
         self.started = True
         self.ended = False
         self.thread_timer.start()
     
     def __start__(self):
+        """ thread that is tied to the start method """
+        
         duration = self.duration
         time_started = time.time()
         self.running = True

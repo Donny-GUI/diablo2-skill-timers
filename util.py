@@ -78,6 +78,8 @@ class SkillTimer:
     }
 
 def get_random_name():
+    """ creates a random diablo based name for use in a profile as the default name """
+    
     from random import randint
     names = ['Barb', 'Sorc', 'Paly', 'Sin', 'Druid', 'Necro', 'Necromancer', 'Barbarian', 'Paladin', 'Assassin', 'Sorceress', 'Moo_Cow']
     rand1 = randint(0, len(names)-1); randname = names[rand1]
